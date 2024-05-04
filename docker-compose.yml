@@ -1,0 +1,10 @@
+version: "3"
+services:
+  drone-gis-prototype:
+    container_name: drone-gis-prototype
+    image: node:21.1.0
+    tty: true
+    volumes:
+      - .:/home/node/app
+    ports:
+      - "5173:5173"
