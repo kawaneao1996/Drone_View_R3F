@@ -132,9 +132,11 @@ export const droneLayer: mapboxgl.AnyLayer & CustomLayer = {
 	updateLngLat: ({
 		latLng,
 		altitude,
+		// beforeLatLng,
 	}: {
 		latLng?: mapboxgl.LngLatLike;
 		altitude?: number;
+		// beforeLatLng?: mapboxgl.LngLatLike;
 	}) => {
 		if (latLng) {
 			modelOrigin = latLng;
@@ -149,5 +151,15 @@ export const droneLayer: mapboxgl.AnyLayer & CustomLayer = {
 		modelTransform.translateX = updateMercator.x;
 		modelTransform.translateY = updateMercator.y;
 		modelTransform.translateZ = updateMercator.z;
+		// モデルの角度を経路に合わせて変更する
+		// 	if (beforeLatLng) {
+		// 		const before = mapboxgl.LngLat.convert(beforeLatLng);
+		// 		const current = mapboxgl.LngLat.convert(modelOrigin);
+		// 		const angle = Math.atan2(
+		// 			before.lat - current.lat,
+		// 			before.lng - current.lng,
+		// 		);
+		// 		modelTransform.rotateZ = angle;
+		// 	}
 	},
 };
